@@ -1,0 +1,37 @@
+{% extends 'template.html' %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block title %}
+    iShoes Project - Login
+{% endblock %}
+
+{% block body %}
+    {% for field, errors in form.errors.items() %}
+    <p class="fs-5 text-danger text-center mt-5">{{ ', '.join(errors) }}</p>
+    {% endfor %}
+    <div class="container col-3 mt-5">
+        <form method="POST">
+            {{ form.csrf_token }}
+            <div class="mb-3">
+                <label class="form-label" for="">{{ form.username.label }}</label>
+                {{ form.username(class="form-control") }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="">{{ form.password.label }}</label>
+                {{ form.password(class="form-control") }}
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-auto">
+                    {{ form.submit(class="btn btn-primary")}}
+                </div>
+                <div class="col-auto">
+                    <button type="button" onclick="location.href='/create_account'"
+                            class="btn btn-primary">Create Account</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

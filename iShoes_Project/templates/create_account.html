@@ -1,0 +1,74 @@
+{% extends 'template.html' %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block title %}
+    iShoes Project - Create Account
+{% endblock %}
+
+{% block body %}
+    <p class="h2 mt-5 text-center">Create an iShoes Account</p>
+    {% if user_match %}
+    <p class="fs-5 text-danger text-center mt-5">Username is already in use, please select another.</p>
+    {% endif %}
+    {% for field, errors in form.errors.items() %}
+    <p class="fs-5 text-danger text-center mt-5">{{ ', '.join(errors) }}</p>
+    {% endfor %}
+
+    <div class="container col-6 mt-5">
+        <form method="POST" action="">
+            {{ form.csrf_token }}
+            <div class="mb-3 col-6">
+                {{ form.username.label }}
+                {{ form.username(class="form-control") }}
+            </div>
+            <div class="mb-3 col-6">
+                {{ form.password.label }}
+                {{ form.password(class="form-control") }}
+            </div>
+            <div class="mb-3 col-6">
+                {{ form.confirm.label }}
+                {{ form.confirm(class="form-control") }}
+            </div>
+            <div class="mb-3 col-6">
+                {{ form.email_address.label }}
+                {{ form.email_address(class="form-control") }}
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    {{ form.first_name.label }}
+                    {{ form.first_name(class="form-control") }}
+                </div>
+                <div class="col-8">
+                    {{ form.last_name.label }}
+                    {{ form.last_name(class="form-control") }}
+                </div>
+            </div>
+            <div class="mb-3 col-12">
+                {{ form.address.label }}
+                {{ form.address(class="form-control") }}
+            </div>
+            <div class="row mb-3">
+                <div class="col-7">
+                    {{ form.city.label }}
+                    {{ form.city(class="form-control") }}
+                </div>
+                <div class="col-2">
+                    {{ form.state.label }}
+                    {{ form.state(class="form-control") }}
+                </div>
+                <div class="col-3">
+                    {{ form.zip_code.label }}
+                    {{ form.zip_code(class="form-control") }}
+                </div>
+            </div>
+            <div class="row ml-auto mb-5">
+                <div class="col-auto">
+                    {{ form.submit(class="btn btn-primary")}}
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
